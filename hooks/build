@@ -1,5 +1,15 @@
 #!/usr/bin/env bash
+IMAGE_NAME="rchien/azure-webappcontainer-ghost"
+DOCKER_TAG="1.20"
+
+if [ -n $1 ]
+then
+    DOCKER_TAG=$1
+    echo "Using Tag - $DOCKER_TAG"
+else
+    echo "Using Default Tag - $DOCKER_TAG"
+fi
 
 # docker tab would be replaced by tag in docker hub
-sed -i 's@{{tag}}@'"${DOCKER_TAG}"'@' Dockerfile
-docker build -t ${IMAGE_NAME} .
+sed -i 's@{{tag}}@'"$DOCKER_TAG"'@' ../Dockerfile
+# docker build -t ${IMAGE_NAME}:${DOCKER_TAG} .
