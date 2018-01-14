@@ -11,7 +11,8 @@ else
 fi
 
 # docker tab would be replaced by tag in docker hub
-sed -i 's@{{tag}}@'"$DOCKER_TAG"'@' ../Dockerfile
-sed -i 's@{{tag}}@'"$DOCKER_TAG"'@' ../azuredeploy.json
+sed -i 's@{{tag}}@'"$DOCKER_TAG"'@' ./Dockerfile
+sed -i 's@{{tag}}@'"$DOCKER_TAG"'@' ./azuredeploy.json
 
-# docker build -t ${IMAGE_NAME}:${DOCKER_TAG} .
+# WSL specific - rely on Win 10 feature to call out to windows exe (i.e. docker)
+docker.exe build -t ${IMAGE_NAME}:${DOCKER_TAG} .
