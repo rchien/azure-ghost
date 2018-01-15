@@ -53,7 +53,7 @@
                 "MYSQLB100",
                 "MYSQLB50"
             ],
-            "defaultValue": "MYSQLB100",
+            "defaultValue": "MYSQLB50",
             "metadata": {
                 "description": "Azure database for MySQL sku name : MYSQLB100 (Basic 100 DTU tier) or MYSQLB50 (Basic 50 DTU tier)"
             }
