@@ -14,10 +14,8 @@ RUN mkdir -p /home/LogFiles
 
 # workaround for issue with Azure database for MySQL. will be removed later
 RUN cd current \
-      && npm install mysqljs/mysql \
-      && cd /usr/local/lib/node_modules/knex-migrator/node_modules \
-      && npm install mysqljs/mysql \
-      && cd /var/lib/ghost
+  && npm install mysqljs/mysql \
+  && cd /var/lib/ghost
 
 COPY sshd_config /etc/ssh/
 COPY init-container.sh /bin/
