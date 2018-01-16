@@ -2,6 +2,13 @@
     "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+        "dockerImage": {
+            "type": "string",
+            "defaultValue": "rchien/azure-webappcontainer-ghost:1.20",
+            "metadata": {
+                "description": "Docker Image (including tag) for custom container app"
+            }
+        },
         "siteName": {
             "type": "string",
             "metadata": {
@@ -94,18 +101,25 @@
     "variables": {
         "hostingPlanName": "[concat(parameters('siteName'), 'serviceplan')]"
     },
-    "resources": [{
+    "resources": [
+        {
             "type": "Microsoft.Web/sites",
             "name": "[parameters('siteName')]",
             "properties": {
                 "siteConfig": {
                     "alwaysOn": true,
-                    "connectionStrings": [{
-                        "name": "defaultConnection",
-                        "ConnectionString": "[concat('Database=', parameters('databaseName'), ';Data Source=', parameters('databaseServer'),'.mysql.database.azure.com;User Id=',parameters('databaseUser'),'@',parameters('databaseServer') ,';Password=',parameters('databaseLoginPassword'))]",
-                        "type": "MySQL"
-                    }],
+                    "connectionStrings": [
+                        {
+                            "name": "defaultConnection",
+                            "ConnectionString": "[concat('Database=', parameters('databaseName'), ';Data Source=', parameters('databaseServer'),'.mysql.database.azure.com;User Id=',parameters('databaseUser'),'@',parameters('databaseServer') ,';Password=',parameters('databaseLoginPassword'))]",
+                            "type": "MySQL"
+                        }
+                    ],
                     "appSettings": [
+                        {
+                            "name": "DOCKER_CUSTOM_IMAGE_NAME",
+                            "value": "parameters('dockerImage')"
+                        },
                         {
                             "name": "DB_HOST",
                             "value": "[concat(parameters('databaseServer') ,'.mysql.database.azure.com')]"
@@ -180,7 +194,8 @@
                 "family": "SkuFamily"
             },
             "type": "Microsoft.DBforMySQL/servers",
-            "resources": [{
+            "resources": [
+                {
                     "type": "firewallrules",
                     "apiVersion": "2016-02-01-privatepreview",
                     "dependsOn": [
