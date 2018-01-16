@@ -99,15 +99,13 @@
             "name": "[parameters('siteName')]",
             "properties": {
                 "siteConfig": {
+                    "alwaysOn": true,
                     "connectionStrings": [{
                         "name": "defaultConnection",
                         "ConnectionString": "[concat('Database=', parameters('databaseName'), ';Data Source=', parameters('databaseServer'),'.mysql.database.azure.com;User Id=',parameters('databaseUser'),'@',parameters('databaseServer') ,';Password=',parameters('databaseLoginPassword'))]",
                         "type": "MySQL"
                     }],
-                    "appSettings": [{
-                            "name": "DOCKER_CUSTOM_IMAGE_NAME",
-                            "value": "rchien/azure-webappcontainer-ghost:{{tag}}"
-                        },
+                    "appSettings": [
                         {
                             "name": "DB_HOST",
                             "value": "[concat(parameters('databaseServer') ,'.mysql.database.azure.com')]"
