@@ -118,7 +118,7 @@
                     "appSettings": [
                         {
                             "name": "DOCKER_CUSTOM_IMAGE_NAME",
-                            "value": "parameters('dockerImage')"
+                            "value": "[parameters('dockerImage')]"
                         },
                         {
                             "name": "DB_HOST",
