@@ -1,7 +1,7 @@
 # azure-ghost
 Extending Offical Ghost docker to work in Azure App Service Linux
 
-[![Azure Deploy](http://azuredeploy.net/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https://raw.githubusercontent.com/rchien/azure-ghost/master/azuredeploy.json)
+[![Azure Deploy](http://azuredeploy.net/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2frchien%2fazure-ghost%2fmaster%2fazuredeploy.json)
 
 #### Required App Settings
 - DB_HOST
